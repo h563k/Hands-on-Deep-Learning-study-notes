@@ -44,5 +44,6 @@ class EncoderDecoder(nn.Module):
 
     def forward(self, enc_X, dec_X, *args):
         enc_outputs = self.encoder(enc_X, *args)
+        # 安装目前的套路,这里一般要构建一个context,这个数据要与enc_outputs合并一块输入decoder
         dec_state = self.decoder.init_state(enc_outputs, *args)
         return self.decoder(dec_X, dec_state)
